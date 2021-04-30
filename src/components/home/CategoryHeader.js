@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import globalStyles from "../../../assets/styles/globalStyles";
+import globalStyles from "globalStyles";
+import CategoryItem from "./CategoryItem";
 
 const CategoryHeader = (props) => {
   const { title } = props;
@@ -17,6 +18,7 @@ const CategoryHeader = (props) => {
         <Text style={styles.seeMore}>
           {title !== "Search result" ? "See more" : ""}
         </Text>
+        <CategoryItem />
       </TouchableOpacity>
     </View>
   );

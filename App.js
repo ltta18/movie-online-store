@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import CategoryHeader from "./src/components/home/CategoryHeader";
+import CategoryHeader from "components/home/CategoryHeader";
 
 export default function App() {
   return (
