@@ -10,6 +10,16 @@ function fetchNowPlaying(state = {}, action) {
   }
 }
 
+function fetchPopular(state = {}, action) {
+  switch (action.type) {
+    case FilmTypes.FETCH_POPULAR_SUCCESS:
+      return { ...action.data.results };
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
   fetchNowPlaying,
+  fetchPopular,
 });

@@ -9,7 +9,7 @@ import {
 import globalStyles from "globalStyles";
 import CategoryItem from "./CategoryItem";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchNowPlayingowPlaying } from "../../redux/actions/film";
+import { fetchNowPlaying } from "../../redux/actions/film";
 
 const CategoryHeader = (props) => {
   const { title } = props;
