@@ -1,6 +1,6 @@
 import FilmTypes from "../types/FilmTypes";
 import { DOMAIN, API_KEY } from "../../../config.json";
-import axios from "axios";
+import { postApi } from "./util";
 
 const movieUrl = (route, id = null) =>
   `${DOMAIN}/movie/${route}${id && `/${id}`}?api_key=${API_KEY}&language=en-US`;
@@ -52,13 +52,3 @@ export function fetchDetail(id) {
     payload: {},
   };
 }
-
-const postApi = (url, data = {}) => {
-  return axios({
-    method: "post",
-    url,
-    data,
-  }).then((res) => {
-    return res;
-  });
-};

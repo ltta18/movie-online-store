@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
 import filmReducer from "./reducers/film";
+import searchReducer from "./reducers/search";
 
 const appReducer = combineReducers({
   filmReducer,
+  searchReducer,
 });
 
 const rootReducer = (state, action) => {
