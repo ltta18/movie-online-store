@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   FlatList,
   StyleSheet,
@@ -8,9 +8,18 @@ import {
 } from "react-native";
 import globalStyles from "globalStyles";
 import CategoryItem from "./CategoryItem";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchNowPlayingowPlaying } from "../../redux/actions/film";
 
 const CategoryHeader = (props) => {
   const { title } = props;
+  const state = useSelector((state) => console.log(state.filmReducer));
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchNowPlaying());
+  }, []);
+
   return (
     <View style={[globalStyles.p5, globalStyles.dpRow]}>
       <Text style={styles.title}>{title}</Text>

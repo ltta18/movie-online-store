@@ -16,3 +16,6 @@ web-build/
 # IDE
 .vscode
 .idea
+
+# config
+config.json
