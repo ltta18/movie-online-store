@@ -10,10 +10,12 @@ export default StyleSheet.create({
   dpSa: {
     flexDirection: "row",
     justifyContent: "space-around",
+    alignItems: "center",
   },
   dpRow: {
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
   },
 
   // padding

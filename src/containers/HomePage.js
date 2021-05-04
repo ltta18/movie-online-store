@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
 import CategoryList from "components/home/CategoryList";
-// import Icon from '../components/common/Icon'
-// import Logo from '../components/common/Logo'
 import {
   FlatList,
   SafeAreaView,
@@ -18,6 +16,7 @@ import {
   fetchPopular,
   fetchTopRated,
 } from "../redux/actions/film";
+import Logo from "components/common/Logo";
 
 const HomePage = (props) => {
   const handleGoTop = () => {
@@ -52,7 +51,9 @@ const HomePage = (props) => {
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <View>
-          <View style={styles.logo}>{/* <Logo /> */}</View>
+          <View style={styles.logo}>
+            <Logo />
+          </View>
           <Text style={styles.subtitle}>
             Welcome
             {/* {props.userInformation.name
@@ -117,7 +118,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
   },
   header: {
-    flex: 1 / 9,
+    flex: 1 / 10,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -127,7 +128,6 @@ const styles = StyleSheet.create({
   },
   logo: {
     marginTop: 15,
-    marginBottom: 5,
   },
   iconBox: {
     flexDirection: "row",
@@ -137,33 +137,14 @@ const styles = StyleSheet.create({
     marginLeft: 20,
   },
   body: {
-    flex: 8 / 9,
+    flex: 9 / 10,
     elevation: 2,
     zIndex: 2,
     backgroundColor: "white",
   },
-  upperImage: {
-    position: "absolute",
-    top: -15,
-    left: -15,
-    zIndex: 1,
-    elevation: 1,
-  },
   subtitle: {
     color: "#1434C3",
     fontWeight: "200",
-  },
-  footer: {
-    backgroundColor: "#E1F9FB",
-    alignItems: "center",
-    padding: 10,
-    marginTop: 20,
-  },
-  footerText: {
-    color: "#1C3DC5",
-    fontSize: 10,
-    textAlign: "center",
-    marginTop: 5,
   },
   goTopText: {
     color: "#707070",
