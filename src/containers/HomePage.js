@@ -15,7 +15,7 @@ import {
   fetchNowPlaying,
   fetchPopular,
   fetchTopRated,
-} from "../redux/actions/film";
+} from "reduxHandler/actions/film";
 import Logo from "components/common/Logo";
 
 const HomePage = (props) => {

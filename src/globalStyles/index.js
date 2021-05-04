@@ -12,7 +12,7 @@ export default StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
   },
-  dpRow: {
+  dpSb: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -27,6 +27,11 @@ export default StyleSheet.create({
   m5: {
     marginLeft: 5,
     marginRight: 5,
+  },
+
+  m10: {
+    marginLeft: 10,
+    marginRight: 10,
   },
 
   // text align

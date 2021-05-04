@@ -7,15 +7,12 @@ import {
   View,
 } from "react-native";
 import globalStyles from "globalStyles";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchNowPlaying } from "../../redux/actions/film";
 
 const CategoryHeader = (props) => {
   const { title } = props;
-  const dispatch = useDispatch();
 
   return (
-    <View style={[globalStyles.p5, globalStyles.dpRow]}>
+    <View style={globalStyles.p5}>
       <Text style={styles.title}>{title}</Text>
     </View>
   );
