@@ -11,7 +11,7 @@ const CategoryPrice = (props) => {
       displayType={"text"}
       thousandSeparator={true}
       prefix={"$"}
-      renderText={(value) => <Text style={cls}>15.00</Text>}
+      renderText={(value) => <Text style={cls}>{value}</Text>}
     />
   );
 };

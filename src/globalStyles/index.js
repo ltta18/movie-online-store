@@ -7,7 +7,7 @@ export default StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  dpJc: {
+  dpSa: {
     flexDirection: "row",
     justifyContent: "space-around",
   },
@@ -25,5 +25,10 @@ export default StyleSheet.create({
   m5: {
     marginLeft: 5,
     marginRight: 5,
+  },
+
+  // text align
+  txCt: {
+    textAlign: "center",
   },
 });

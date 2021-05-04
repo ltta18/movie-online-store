@@ -1,7 +1,6 @@
 import React from "react";
 import CategoryPrice from "./CategoryPrice";
 import { Image, StyleSheet, Text, View } from "react-native";
-import { Feather } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import globalStyles from "globalStyles";
 
@@ -12,20 +11,21 @@ const CategoryItem = (props) => {
       <TouchableOpacity onPress={() => onPress(item)}>
         <View style={styles.itemImageContainer}>
           <Image
-            source={{ uri: item?.images?.[0]?.url }}
-            style={globalStyles.m5}
+            source={{
+              uri: `https://image.tmdb.org/t/p/w500${item?.poster_path}`,
+            }}
+            style={[styles.itemImage, globalStyles.m5]}
           />
         </View>
-        <Text numberOfLines={2} style={globalStyles.p5}>
-          {item?.displayName}
+        <Text numberOfLines={2} style={[globalStyles.txCt, globalStyles.p5]}>
+          {item?.title}
         </Text>
       </TouchableOpacity>
-      <View style={styles.priceContainer}>
+      <View style={[globalStyles.dpCt, styles.priceContainer]}>
         <CategoryPrice
-          price={item?.price?.sellPrice}
+          price="15.00"
           cls={[styles.itemPrice, globalStyles.m5]}
         />
-        <Feather name="truck" color="lightgreen" />
       </View>
     </View>
   );
@@ -51,27 +51,16 @@ const styles = StyleSheet.create({
   itemImage: {
     flex: 1,
     height: 200,
+    width: 200,
     marginTop: 15,
     resizeMode: "contain",
-    width: 200,
   },
   priceContainer: {
-    flexDirection: "row",
-    alignItems: "center",
     marginTop: 5,
     marginBottom: 5,
   },
   itemPrice: {
     fontWeight: "bold",
-  },
-  onlyCost: {
-    textAlign: "right",
-    fontSize: 11,
-  },
-  saleText: {
-    color: "#EF2741",
-    fontWeight: "bold",
-    fontSize: 11,
   },
 });
 export default CategoryItem;

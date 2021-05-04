@@ -1,17 +1,16 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import CategoryHeader from "components/home/CategoryHeader";
-import { getApi } from "./src/redux/middleware";
 import { Provider } from "react-redux";
 import { store } from "reduxHandler";
+import HomePage from "./src/containers/HomePage";
 
 export default function App() {
   return (
     <Provider store={store}>
       <View style={styles.container}>
         <StatusBar style="auto" />
-        <CategoryHeader title="hiii" />
+        <HomePage />
       </View>
     </Provider>
   );

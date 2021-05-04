@@ -3,7 +3,9 @@ import { DOMAIN, API_KEY } from "../../../config.json";
 import { postApi } from "./util";
 
 const movieUrl = (route, id = null) =>
-  `${DOMAIN}/movie/${route}${id && `/${id}`}?api_key=${API_KEY}&language=en-US`;
+  `${DOMAIN}/movie/${route}${
+    id ? `/${id}` : ""
+  }?api_key=${API_KEY}&language=en-US`;
 
 export function fetchNowPlaying() {
   return {
@@ -33,14 +35,6 @@ export function fetchRecommendation(id) {
   return {
     types: FilmTypes.FETCH_POPULAR,
     callAPI: () => postApi(movieUrl("recommendations", id)),
-    payload: {},
-  };
-}
-
-export function fetchImage(id) {
-  return {
-    types: FilmTypes.FETCH_IMAGE,
-    callAPI: () => postApi(movieUrl("images", id)),
     payload: {},
   };
 }
