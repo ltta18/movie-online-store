@@ -1,8 +1,9 @@
 import React from "react";
-import CategoryPrice from "./CategoryPrice";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import globalStyles from "globalStyles";
+import { getImage } from "utils";
+import PriceItem from "../detail/PriceItem";
 
 const CategoryItem = ({ item, width }) => {
   const onNavigationToDetail = (id) => {};
@@ -12,7 +13,7 @@ const CategoryItem = ({ item, width }) => {
         <View style={styles.itemImageContainer}>
           <Image
             source={{
-              uri: `https://image.tmdb.org/t/p/w500${item?.poster_path}`,
+              uri: getImage(item?.poster_path),
             }}
             style={[styles.itemImage, globalStyles.m5]}
           />
@@ -22,10 +23,7 @@ const CategoryItem = ({ item, width }) => {
         </Text>
       </TouchableOpacity>
       <View style={[globalStyles.dpCt, styles.priceContainer]}>
-        <CategoryPrice
-          price="15.00"
-          cls={[styles.itemPrice, globalStyles.m5]}
-        />
+        <PriceItem price="15.00" cls={[styles.itemPrice, globalStyles.m5]} />
       </View>
     </View>
   );

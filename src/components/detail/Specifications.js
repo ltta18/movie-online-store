@@ -1,6 +1,7 @@
 import React from "react";
-import { StyleSheet, View, Text } from "react-native";
-import { DataTable } from "react-native-paper";
+import { StyleSheet, View, Text, Platform } from "react-native";
+import { Col, Grid, Row } from "react-native-easy-grid";
+import { useSelector } from "react-redux";
 import globalStyles from "../../globalStyles";
 
 const specs = {
@@ -8,34 +9,44 @@ const specs = {
   release_date: "Release Date",
   overview: "Overview",
   genres: "Genres",
-  production_company: "Production Commpany",
+  production_companies: "Production Company",
+  vote_average: "Vote Average",
+  budget: "Budget",
+  revenue: "Revenue",
+  homepage: "Home Page",
 };
 
 const listToStr = (list) => {
-  return list.map((item) => item.name).join(", ");
+  return list.map((film) => film.name).join(", ");
 };
 
-export default function Specifications({ item }) {
+export default function Specifications() {
+  const film = useSelector((state) => state.filmReducer.fetchDetail);
   return (
     <View style={[globalStyles.dpCt, styles.container]}>
       <Text style={styles.specsTitle}>Detail</Text>
-      <DataTable>
+      <Grid style={[globalStyles.fw, styles.grid]}>
         {Object.keys(specs).map((key, index) => (
-          <DataTable.Row
+          <Row
             key={index}
-            style={index % 2 ? styles.evenRow : styles.oddRow}
+            style={[
+              globalStyles.p5,
+              index % 2 ? styles.evenRow : styles.oddRow,
+            ]}
           >
-            <DataTable.Cell style={styles.leftCell}>
-              <Text style={styles.leftCellContent}>{specs[key]}</Text>
-            </DataTable.Cell>
-            <DataTable.Cell style={styles.rightCell}>
-              <Text numberOfLines={2} style={styles.rightCellContent}>
-                {Array.isArray(item[key]) ? listToStr(item[key]) : item[key]}
-              </Text>
-            </DataTable.Cell>
-          </DataTable.Row>
+            <Col size={25}>
+              <Text>{specs[key]}</Text>
+            </Col>
+            <Col size={75} style={globalStyles.m5}>
+              {film && (
+                <Text numberOfLines={5} minHeight={150}>
+                  {Array.isArray(film[key]) ? listToStr(film[key]) : film[key]}
+                </Text>
+              )}
+            </Col>
+          </Row>
         ))}
-      </DataTable>
+      </Grid>
     </View>
   );
 }
@@ -44,29 +55,23 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
   },
+  grid: {
+    borderColor: "lightgrey",
+    borderStyle: "solid",
+    borderWidth: 1,
+    borderRadius: 3,
+  },
   specsTitle: {
     fontSize: 16,
     fontWeight: "bold",
     alignSelf: "flex-start",
     marginVertical: 10,
   },
-  oddRow: {
-    flex: 1,
-    flexWrap: "wrap",
-  },
   evenRow: {
-    flex: 1,
-    flexDirection: "row",
-    flexWrap: "wrap",
     backgroundColor: "#F6F6F6",
   },
-  leftCell: {
-    flex: 1,
-    flexWrap: "wrap",
-    marginRight: 10,
-  },
+  leftCell: { flexWrap: "wrap" },
   rightCell: {
-    flex: 2,
-    flexWrap: "wrap",
+    marginLeft: 10,
   },
 });

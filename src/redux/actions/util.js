@@ -1,10 +1,9 @@
 import axios from "axios";
 
-export const postApi = (url, data = {}) => {
+export const getApi = (url, data = {}) => {
   return axios({
-    method: "post",
+    method: "get",
     url,
-    data,
   }).then((res) => {
     return res;
   });

@@ -39,7 +39,7 @@ function fetchRecommendation(state = {}, action) {
 
 function fetchDetail(state = {}, action) {
   switch (action.type) {
-    case FilmTypes.FETCH_DETAIL:
+    case FilmTypes.FETCH_DETAIL_SUCCESS:
       return { ...action.data };
     default:
       return state;

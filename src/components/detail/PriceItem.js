@@ -2,7 +2,7 @@ import React from "react";
 import NumberFormat from "react-number-format";
 import { Text } from "react-native";
 
-const CategoryPrice = (props) => {
+const PriceItem = (props) => {
   const { price, cls } = props;
 
   return (
@@ -16,4 +16,4 @@ const CategoryPrice = (props) => {
   );
 };
 
-export default CategoryPrice;
+export default PriceItem;

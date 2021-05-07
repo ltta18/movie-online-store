@@ -16,29 +16,37 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchRecommendation } from "reduxHandler/actions/film";
 import globalStyles from "../globalStyles";
 import { fetchDetail } from "../redux/actions/film";
+import { getImage } from "utils";
+import MainInfo from "../components/detail/MainInfo";
 
 const DetailPage = ({ id }) => {
-  const recommend = useSelector((state) => state.fetchRecommendation?.results);
-  const film = useSelector((state) => state.fetchDetail?.results);
+  const recommend = useSelector(
+    (state) => state.filmReducer.fetchRecommendation?.results
+  );
+  const film = useSelector((state) => state.filmReducer.fetchDetail);
   const dispatch = useDispatch();
   useEffect(() => {
     // dispatch(fetchRecommendation(item.id));
-    dispatch(fetchDetail(id));
+    dispatch(fetchDetail(460465));
   }, []);
 
   const onBuying = () => {
     alert("Added to cart");
     // addingToCart
   };
+
   return (
     <SafeAreaView style={styles.container}>
       <NoLogoHeader
       // onAddingToCart={onAddingToCart}
       // data={product}
       />
+
       <ScrollView style={styles.body}>
-        <Image />
-        {/* <Specifications data={film} /> */}
+        <View style={styles.itemImageContainer}>
+          <MainInfo />
+        </View>
+        <Specifications />
         {/* <SuggestDetail
           name="Similar Movies"
           // data={}
@@ -59,6 +67,7 @@ const DetailPage = ({ id }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    width: "100%",
   },
   body: {
     flex: 10 / 11,
@@ -86,16 +95,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+
   phoneInput: {
     width: 200,
     height: 35,
     borderRadius: 17,
     backgroundColor: "#fff",
     paddingHorizontal: 10,
-  },
-  countryPickStyle: {
-    borderRightWidth: 2,
-    borderRightColor: "#000",
   },
   button: {
     width: 200,

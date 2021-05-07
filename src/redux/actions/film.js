@@ -1,6 +1,6 @@
 import FilmTypes from "../types/FilmTypes";
 import { DOMAIN, API_KEY } from "../../../config.json";
-import { postApi } from "./util";
+import { getApi } from "./util";
 
 const movieUrl = (route, id = null) =>
   `${DOMAIN}/movie/${route}${
@@ -10,7 +10,7 @@ const movieUrl = (route, id = null) =>
 export function fetchNowPlaying() {
   return {
     types: FilmTypes.FETCH_NOW_PLAYING,
-    callAPI: () => postApi(movieUrl("now_playing")),
+    callAPI: () => getApi(movieUrl("now_playing")),
     payload: {},
   };
 }
@@ -18,7 +18,7 @@ export function fetchNowPlaying() {
 export function fetchPopular() {
   return {
     types: FilmTypes.FETCH_POPULAR,
-    callAPI: () => postApi(movieUrl("popular")),
+    callAPI: () => getApi(movieUrl("popular")),
     payload: {},
   };
 }
@@ -26,7 +26,7 @@ export function fetchPopular() {
 export function fetchTopRated() {
   return {
     types: FilmTypes.FETCH_TOP_RATED,
-    callAPI: () => postApi(movieUrl("top_rated")),
+    callAPI: () => getApi(movieUrl("top_rated")),
     payload: {},
   };
 }
@@ -34,7 +34,7 @@ export function fetchTopRated() {
 export function fetchRecommendation(id) {
   return {
     types: FilmTypes.FETCH_POPULAR,
-    callAPI: () => postApi(movieUrl("recommendations", id)),
+    callAPI: () => getApi(movieUrl("recommendations", id)),
     payload: {},
   };
 }
@@ -42,7 +42,7 @@ export function fetchRecommendation(id) {
 export function fetchDetail(id) {
   return {
     types: FilmTypes.FETCH_DETAIL,
-    callAPI: () => postApi(movieUrl(id)),
+    callAPI: () => getApi(movieUrl(id)),
     payload: {},
   };
 }

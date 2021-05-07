@@ -38,4 +38,12 @@ export default StyleSheet.create({
   txCt: {
     textAlign: "center",
   },
+
+  // width + height
+  fw: {
+    width: "100%",
+  },
+  fh: {
+    height: "100%",
+  },
 });
