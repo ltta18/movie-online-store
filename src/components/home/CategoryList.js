@@ -4,16 +4,13 @@ import CategoryHeader from "./CategoryHeader";
 import CategoryItem from "./CategoryItem";
 import globalStyles from "globalStyles";
 
-const CategoryList = (props) => {
-  const { title, item, onPress } = props;
+const CategoryList = ({ title, item }) => {
   return (
     <View>
       <CategoryHeader title={title} url={null} />
       <FlatList
         data={item?.slice(0, 4)}
-        renderItem={(item) => (
-          <CategoryItem item={item.item} onPress={onPress} width="48%" />
-        )}
+        renderItem={(item) => <CategoryItem item={item.item} width="48%" />}
         keyExtractor={(_item, index) => String(index)}
         numColumns={2}
         columnWrapperStyle={globalStyles.dpSa}

@@ -4,11 +4,11 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import globalStyles from "globalStyles";
 
-const CategoryItem = (props) => {
-  const { item, onPress, width } = props;
+const CategoryItem = ({ item, width }) => {
+  const onNavigationToDetail = (id) => {};
   return (
     <View style={[styles.shadow, { width: width, padding: 10 }]}>
-      <TouchableOpacity onPress={() => onPress(item)}>
+      <TouchableOpacity onPress={() => onNavigationToDetail(item?.id)}>
         <View style={styles.itemImageContainer}>
           <Image
             source={{
