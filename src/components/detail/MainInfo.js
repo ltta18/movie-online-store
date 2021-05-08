@@ -14,7 +14,7 @@ export default function MainInfo() {
         source={{
           uri: getImage(film?.poster_path),
         }}
-        style={[styles.itemImage, globalStyles.m5]}
+        style={[globalStyles.image, globalStyles.m5]}
       />
       <Text style={styles.title}>{film?.title}</Text>
       <View style={[globalStyles.dpSb, globalStyles.fw]}>
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   title: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: "bold",
     alignSelf: "flex-start",
     marginTop: 10,
@@ -55,12 +55,5 @@ const styles = StyleSheet.create({
   brand: {
     color: "#1434C3",
     fontWeight: "500",
-  },
-  itemImage: {
-    flex: 1,
-    height: 200,
-    width: 200,
-    marginTop: 15,
-    resizeMode: "contain",
   },
 });

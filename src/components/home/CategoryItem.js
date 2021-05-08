@@ -15,7 +15,7 @@ const CategoryItem = ({ item, width }) => {
             source={{
               uri: getImage(item?.poster_path),
             }}
-            style={[styles.itemImage, globalStyles.m5]}
+            style={[globalStyles.image, globalStyles.m5]}
           />
         </View>
         <Text numberOfLines={2} style={[globalStyles.txCt, globalStyles.p5]}>
@@ -45,13 +45,6 @@ const styles = StyleSheet.create({
     elevation: 3,
     borderColor: "transparent",
     borderWidth: 1,
-  },
-  itemImage: {
-    flex: 1,
-    height: 200,
-    width: 200,
-    marginTop: 15,
-    resizeMode: "contain",
   },
   priceContainer: {
     marginTop: 5,

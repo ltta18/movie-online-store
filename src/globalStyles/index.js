@@ -46,4 +46,12 @@ export default StyleSheet.create({
   fh: {
     height: "100%",
   },
+
+  image: {
+    flex: 1,
+    height: 200,
+    width: 200,
+    marginTop: 15,
+    resizeMode: "contain",
+  },
 });

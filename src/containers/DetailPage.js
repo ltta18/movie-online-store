@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Specifications from "components/detail/Specifications";
-import SuggestDetail from "components/detail/SuggestDetail";
+import SimilarMovies from "components/detail/SimilarMovies";
 import NoLogoHeader from "components/common/NoLogoHeader";
 import {
   SafeAreaView,
@@ -26,7 +26,7 @@ const DetailPage = ({ id }) => {
   const film = useSelector((state) => state.filmReducer.fetchDetail);
   const dispatch = useDispatch();
   useEffect(() => {
-    // dispatch(fetchRecommendation(item.id));
+    dispatch(fetchRecommendation(460465));
     dispatch(fetchDetail(460465));
   }, []);
 
@@ -47,10 +47,7 @@ const DetailPage = ({ id }) => {
           <MainInfo />
         </View>
         <Specifications />
-        {/* <SuggestDetail
-          name="Similar Movies"
-          // data={}
-        /> */}
+        <SimilarMovies />
       </ScrollView>
       <View style={styles.footer}>
         <TouchableOpacity
@@ -95,7 +92,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-
   phoneInput: {
     width: 200,
     height: 35,

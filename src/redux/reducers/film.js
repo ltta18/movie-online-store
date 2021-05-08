@@ -30,7 +30,7 @@ function fetchTopRated(state = {}, action) {
 
 function fetchRecommendation(state = {}, action) {
   switch (action.type) {
-    case FilmTypes.FETCH_RECOMMENDATION:
+    case FilmTypes.FETCH_RECOMMENDATION_SUCCESS:
       return { ...action.data };
     default:
       return state;

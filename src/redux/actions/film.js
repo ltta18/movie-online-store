@@ -33,8 +33,8 @@ export function fetchTopRated() {
 
 export function fetchRecommendation(id) {
   return {
-    types: FilmTypes.FETCH_POPULAR,
-    callAPI: () => getApi(movieUrl("recommendations", id)),
+    types: FilmTypes.FETCH_RECOMMENDATION,
+    callAPI: () => getApi(movieUrl(id, "recommendations")),
     payload: {},
   };
 }
