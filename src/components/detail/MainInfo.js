@@ -5,7 +5,7 @@ import globalStyles from "../../globalStyles";
 import { getImage } from "../../utils";
 import PriceItem from "./PriceItem";
 
-export default function MainInfo() {
+const MainInfo = () => {
   const film = useSelector((state) => state.filmReducer.fetchDetail);
 
   return (
@@ -28,7 +28,7 @@ export default function MainInfo() {
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -57,3 +57,5 @@ const styles = StyleSheet.create({
     fontWeight: "500",
   },
 });
+
+export default MainInfo;

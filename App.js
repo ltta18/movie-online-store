@@ -6,14 +6,16 @@ import { store } from "reduxHandler";
 import Logo from "components/common/Logo";
 import DetailPage from "./src/containers/DetailPage";
 import HomePage from "./src/containers/HomePage";
+import SearchPage from "./src/containers/SearchPage";
 
 export default function App() {
   return (
     <Provider store={store}>
       <SafeAreaView style={styles.container}>
         <StatusBar style="auto" />
-        {/* <HomePage /> */}
-        <DetailPage />
+        {/* <HomePage />
+        <DetailPage /> */}
+        <SearchPage />
       </SafeAreaView>
     </Provider>
   );

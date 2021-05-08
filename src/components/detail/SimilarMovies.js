@@ -9,7 +9,7 @@ import {
 import CategoryItem from "components/home/CategoryItem";
 import { useSelector } from "react-redux";
 
-export default function SuggestDetail() {
+const SuggestDetail = () => {
   const data = useSelector(
     (state) => state.filmReducer.fetchRecommendation?.results
   );
@@ -32,7 +32,7 @@ export default function SuggestDetail() {
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -58,3 +58,5 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
 });
+
+export default SuggestDetail;

@@ -20,7 +20,7 @@ const listToStr = (list) => {
   return list.map((film) => film.name).join(", ");
 };
 
-export default function Specifications() {
+const Specifications = () => {
   const film = useSelector((state) => state.filmReducer.fetchDetail);
   return (
     <View style={[globalStyles.dpCt, styles.container]}>
@@ -49,7 +49,7 @@ export default function Specifications() {
       </Grid>
     </View>
   );
-}
+};
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -75,3 +75,5 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
 });
+
+export default Specifications;

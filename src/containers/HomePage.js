@@ -18,7 +18,7 @@ import {
 } from "reduxHandler/actions/film";
 import Logo from "components/common/Logo";
 
-const HomePage = (props) => {
+const HomePage = () => {
   const handleGoTop = () => {
     this.scroll.scrollTo({
       y: 0,
