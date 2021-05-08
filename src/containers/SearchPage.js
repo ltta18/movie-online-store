@@ -37,15 +37,18 @@ const SearchPage = ({ navigation }) => {
           handleSearch={(text) => handleSearch(text)}
           onSearch={onSearch}
         />
+        <View style={[styles.body, globalStyles.m10]}>
+          <SearchResult search={search} onPress={onNavigatingToDetailScreen} />
+        </View>
         {search ? (
           search !== "" ? (
             <ActivityIndicator size="large" />
           ) : (
             <View style={[styles.body, globalStyles.m10]}>
-              {/* <SearchResult
+              <SearchResult
                 search={search}
                 onPress={onNavigatingToDetailScreen}
-              /> */}
+              />
             </View>
           )
         ) : (

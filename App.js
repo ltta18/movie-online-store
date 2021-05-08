@@ -16,8 +16,8 @@ export default function App() {
         <StatusBar style="auto" />
         {/* <HomePage />
         <DetailPage /> */}
-        {/* <SearchPage /> */}
-        <CartPage />
+        <SearchPage />
+        {/* <CartPage /> */}
       </SafeAreaView>
     </Provider>
   );
