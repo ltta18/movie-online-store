@@ -26,7 +26,7 @@ const SearchPage = ({ navigation }) => {
   };
   const onSearch = () => {
     dispatch(searchByTitle(search));
-    setHistoryList((prev) => [...prev, [search]]);
+    setHistoryList((prev) => [...prev, search]);
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -37,9 +37,6 @@ const SearchPage = ({ navigation }) => {
           handleSearch={(text) => handleSearch(text)}
           onSearch={onSearch}
         />
-        <View style={[styles.body, globalStyles.m10]}>
-          <SearchResult search={search} onPress={onNavigatingToDetailScreen} />
-        </View>
         {search ? (
           search !== "" ? (
             <ActivityIndicator size="large" />
@@ -53,8 +50,10 @@ const SearchPage = ({ navigation }) => {
           )
         ) : (
           <View style={styles.body}>
-            {/* <HistoryList historyList={historyList} />
-             */}
+            <HistoryList
+              historyList={historyList}
+              setHistoryList={setHistoryList}
+            />
           </View>
         )}
       </ScrollView>
