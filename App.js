@@ -7,6 +7,7 @@ import Logo from "components/common/Logo";
 import DetailPage from "./src/containers/DetailPage";
 import HomePage from "./src/containers/HomePage";
 import SearchPage from "./src/containers/SearchPage";
+import CartPage from "./src/containers/CartPage";
 
 export default function App() {
   return (
@@ -15,7 +16,8 @@ export default function App() {
         <StatusBar style="auto" />
         {/* <HomePage />
         <DetailPage /> */}
-        <SearchPage />
+        {/* <SearchPage /> */}
+        <CartPage />
       </SafeAreaView>
     </Provider>
   );

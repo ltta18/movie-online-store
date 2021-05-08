@@ -18,9 +18,9 @@ const MainInfo = () => {
       />
       <Text style={styles.title}>{film?.title}</Text>
       <View style={[globalStyles.dpSb, globalStyles.fw]}>
-        <Text style={styles.brandWrapper}>
+        <Text style={styles.companyWrapper}>
           By{" "}
-          <Text style={styles.brand}>
+          <Text style={styles.company}>
             {Object.keys(film).length > 0 && film.production_companies[0].name}
           </Text>
         </Text>
@@ -48,11 +48,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
     alignSelf: "flex-start",
   },
-  brandWrapper: {
+  companyWrapper: {
     color: "#707070",
     alignSelf: "flex-start",
   },
-  brand: {
+  company: {
     color: "#1434C3",
     fontWeight: "500",
   },

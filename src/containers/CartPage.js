@@ -7,13 +7,16 @@ import {
   TouchableOpacity,
 } from "react-native-gesture-handler";
 import { Feather } from "@expo/vector-icons";
+import { useSelector } from "react-redux";
+import globalStyles from "../globalStyles";
+import PriceItem from "../components/detail/PriceItem";
 
 const CartPage = ({ navigation }) => {
   const cart = useSelector((state) => state.cart);
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
+      <View style={[styles.header, globalStyles.m10]}>
         <TouchableOpacity>
           <Feather
             name="chevron-left"
@@ -25,36 +28,33 @@ const CartPage = ({ navigation }) => {
         <Text style={styles.title}>Cart</Text>
       </View>
       <ScrollView style={styles.body}>
-        {cart &&
-          cart?.addedMovies?.map((movie, i) => (
-            <CartItem key={i} data={movie} />
-          ))}
+        {cart?.addedMovies?.map((movie, i) => (
+          <CartItem key={i} data={movie} />
+        ))}
       </ScrollView>
-      <View style={styles.couponWrapper}>
+      <View style={[styles.couponWrapper, globalStyles.dpCt, globalStyles.m10]}>
         <TextInput editable style={styles.textInput} placeholder="Coupon" />
         <TouchableOpacity
-          style={styles.couponButton}
+          style={[styles.couponButton, globalStyles.dpCt]}
           onPress={() => alert("Invalid coupon")}
         >
           <Text style={styles.couponText}>APPLY</Text>
         </TouchableOpacity>
       </View>
-      <View style={styles.checkOutWrapper}>
-        <View style={styles.checkOutText}>
+      <View style={[styles.checkOutWrapper, globalStyles.m10]}>
+        <View style={[styles.checkOutText, globalStyles.dpSb]}>
           <Text style={styles.greyText}>Subtotal</Text>
-          <Text style={styles.greyText}>{cart.sellPriceTotal}</Text>
+          <PriceItem price={cart?.sellPriceTotal} cls={styles.greyText} />
         </View>
-        <View style={styles.checkOutText}>
+        <View style={[styles.checkOutText, globalStyles.dpSb]}>
           <Text style={styles.greyText}>Discount</Text>
-          <Text style={styles.greyText}>
-            {cart.sellPriceTotal - cart.supplierSaleTotal}
-          </Text>
+          <PriceItem price={0} cls={styles.greyText} />
         </View>
-        <View style={styles.checkOutText}>
+        <View style={[styles.checkOutText, globalStyles.dpSb]}>
           <Text style={styles.total}>Total</Text>
-          <Text style={styles.total}>{cart.supplierSaleTotal}</Text>
+          <PriceItem price={cart?.sellPriceTotal} cls={styles.total} />
         </View>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={[styles.button, globalStyles.dpCt]}>
           <Text style={styles.buttonText}>CHECK OUT</Text>
         </TouchableOpacity>
       </View>
@@ -65,13 +65,12 @@ const CartPage = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    width: "100%",
   },
   header: {
     flex: 1 / 9,
     flexDirection: "row",
     alignItems: "center",
-    marginLeft: 10,
-    marginRight: 10,
     marginTop: 20,
     elevation: 2,
     zIndex: 2,
@@ -86,12 +85,10 @@ const styles = StyleSheet.create({
     elevation: 2,
     zIndex: 2,
     backgroundColor: "#fff",
+    width: "100%",
   },
   couponWrapper: {
     flex: 1 / 9,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
     elevation: 2,
     zIndex: 2,
     marginTop: 10,
@@ -100,15 +97,13 @@ const styles = StyleSheet.create({
     width: 70,
     height: 45,
     backgroundColor: "#51D2FF",
-    justifyContent: "center",
-    alignItems: "center",
     marginLeft: 10,
   },
   couponText: {
     color: "#1435C3",
   },
   textInput: {
-    width: "60%",
+    flexGrow: 1,
     height: 45,
     color: "#707070",
     fontSize: 15,
@@ -121,14 +116,10 @@ const styles = StyleSheet.create({
   checkOutWrapper: {
     flex: 4 / 9,
     justifyContent: "center",
-    alignItems: "center",
     elevation: 2,
     zIndex: 2,
   },
   checkOutText: {
-    flexDirection: "row",
-    width: "80%",
-    justifyContent: "space-between",
     marginBottom: 10,
   },
   greyText: {
@@ -145,8 +136,8 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 25,
     backgroundColor: "rgb(21, 54, 195)",
-    alignItems: "center",
-    justifyContent: "center",
+    marginLeft: "auto",
+    marginRight: "auto",
   },
   buttonText: {
     color: "#fff",
