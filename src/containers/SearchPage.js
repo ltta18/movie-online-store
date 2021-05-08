@@ -10,9 +10,10 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import globalStyles from "../globalStyles";
-import { searchByTitle } from "../redux/actions/search";
+import globalStyles from "globalStyles";
+import { searchByTitle } from "reduxHandler/actions/search";
 import { useDispatch } from "react-redux";
+import SuggestMovies from "components/search/SuggestMovies";
 
 const SearchPage = ({ navigation }) => {
   const [search, setSearch] = useState("");
@@ -54,6 +55,7 @@ const SearchPage = ({ navigation }) => {
               historyList={historyList}
               setHistoryList={setHistoryList}
             />
+            <SuggestMovies />
           </View>
         )}
       </ScrollView>
@@ -65,6 +67,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
+    width: "100%",
   },
   body: {
     flex: 9 / 11,

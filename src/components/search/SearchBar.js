@@ -1,6 +1,7 @@
 import React from "react";
 import { View, StyleSheet, TextInput } from "react-native";
 import { Feather } from "@expo/vector-icons";
+import globalStyles from "../../globalStyles";
 
 export default function SearchBar({ search, handleSearch, onSearch }) {
   const handleRemoveSearchAll = () => {
@@ -8,7 +9,7 @@ export default function SearchBar({ search, handleSearch, onSearch }) {
   };
 
   return (
-    <View style={styles.searchBar}>
+    <View style={[styles.searchBar, globalStyles.m10]}>
       <TextInput
         style={[styles.subtitle, styles.searchInput]}
         placeholder="Which movie do you want for today?"
@@ -47,15 +48,14 @@ const styles = StyleSheet.create({
   },
   searchBar: {
     flex: 1 / 11,
-    borderRadius: 5,
+    marginTop: 10,
+    borderRadius: 3,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
     paddingLeft: 20,
-    marginLeft: 10,
-    marginRight: 10,
     overflow: "hidden",
-    backgroundColor: "white",
+    backgroundColor: "#F2F2F2",
     shadowColor: "#000",
     shadowOffset: {
       width: 2,
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   },
   searchInput: {
     backgroundColor: "transparent",
-    width: "80%",
+    flexGrow: 1,
   },
   searchIcon: {
     marginRight: 20,

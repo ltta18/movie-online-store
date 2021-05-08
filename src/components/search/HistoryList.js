@@ -7,6 +7,7 @@ import {
   StyleSheet,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
+import globalStyles from "../../globalStyles";
 
 const HistoryItem = ({ item, index, removeHistory }) => {
   return (
@@ -31,7 +32,7 @@ const HistoryList = ({ historyList, setHistoryList }) => {
   };
 
   return (
-    <View style={styles.history}>
+    <View style={[styles.history, globalStyles.m10]}>
       <View style={styles.historyHeader}>
         <Text style={styles.title}>Search History</Text>
         <TouchableOpacity onPress={() => removeAllHistory()}>

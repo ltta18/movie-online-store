@@ -54,13 +54,7 @@ const HomePage = () => {
           <View style={styles.logo}>
             <Logo />
           </View>
-          <Text style={styles.subtitle}>
-            Welcome
-            {/* {props.userInformation.name
-              ? props.userInformation.name
-              : "Anonymous"} */}
-            !
-          </Text>
+          <Text style={styles.subtitle}>Welcome!</Text>
         </View>
         <View style={styles.iconBox}>
           <TouchableOpacity
