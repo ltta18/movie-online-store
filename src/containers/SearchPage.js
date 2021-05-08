@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import NoLogoHeader from "components/common/NoLogoHeader";
 import SearchBar from "components/search/SearchBar";
 import HistoryList from "components/search/HistoryList";
-import Catalogue from "components/search/Catalogue";
 import SearchResult from "components/search/SearchResult";
 import {
   SafeAreaView,
@@ -12,21 +11,21 @@ import {
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import globalStyles from "../globalStyles";
+import { searchByTitle } from "../redux/actions/search";
+import { useDispatch } from "react-redux";
 
 const SearchPage = ({ navigation }) => {
   const [search, setSearch] = useState("");
   const [historyList, setHistoryList] = useState([]);
-  const [isSearching, setIsSearching] = useState(false);
+  const dispatch = useDispatch();
   const onNavigatingToDetailScreen = (data) => {
     // navigate
   };
-  const handleStateSearch = (text) => {
+  const handleSearch = (text) => {
     setSearch(text);
   };
-  const handleSearch = () => {
-    setIsSearching(true);
-    setIsSearching(false);
-    // search api
+  const onSearch = () => {
+    dispatch(searchByTitle(search));
     setHistoryList((prev) => [...prev, [search]]);
   };
   return (
@@ -35,24 +34,24 @@ const SearchPage = ({ navigation }) => {
         <NoLogoHeader />
         <SearchBar
           search={search}
-          handleStateSearch={(text) => handleStateSearch(text)}
-          handleSearch={handleSearch}
+          handleSearch={(text) => handleSearch(text)}
+          onSearch={onSearch}
         />
         {search ? (
-          isSearching ? (
+          search !== "" ? (
             <ActivityIndicator size="large" />
           ) : (
             <View style={[styles.body, globalStyles.m10]}>
-              <SearchResult
+              {/* <SearchResult
                 search={search}
                 onPress={onNavigatingToDetailScreen}
-              />
+              /> */}
             </View>
           )
         ) : (
           <View style={styles.body}>
-            <HistoryList historyList={historyList} />
-            <Catalogue />
+            {/* <HistoryList historyList={historyList} />
+             */}
           </View>
         )}
       </ScrollView>
