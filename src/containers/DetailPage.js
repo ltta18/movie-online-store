@@ -2,28 +2,22 @@ import React, { useEffect } from "react";
 import Specifications from "components/detail/Specifications";
 import SimilarMovies from "components/detail/SimilarMovies";
 import NoLogoHeader from "components/common/NoLogoHeader";
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  Image,
-} from "react-native";
+import MainInfo from "components/detail/MainInfo";
+import globalStyles from "globalStyles";
+import { SafeAreaView, StyleSheet, ScrollView, View, Text } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { Feather } from "@expo/vector-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRecommendation } from "reduxHandler/actions/film";
-import globalStyles from "../globalStyles";
-import { fetchDetail } from "../redux/actions/film";
-import { getImage } from "utils";
-import MainInfo from "../components/detail/MainInfo";
-import { addFilm } from "../redux/actions/cart";
+import { fetchDetail } from "reduxHandler/actions/film";
+import { addFilm } from "reduxHandler/actions/cart";
 
 const DetailPage = ({ navigation, route }) => {
+  // Component displays Detail Page
+
   const { id } = route.params;
   const film = useSelector((state) => state.filmReducer.fetchDetail);
   const cart = useSelector((state) => state.cartReducer);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchRecommendation(id));
@@ -32,18 +26,15 @@ const DetailPage = ({ navigation, route }) => {
 
   const onBuying = () => {
     alert("Added to cart");
-    // addingToCart
     dispatch(addFilm({ [id]: film }));
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      <NoLogoHeader
-        // onAddingToCart={onAddingToCart}
-        // data={product}
-        navigation={navigation}
-      />
+      {/* header */}
+      <NoLogoHeader navigation={navigation} />
 
+      {/* body */}
       <ScrollView style={styles.body}>
         <View style={styles.itemImageContainer}>
           <MainInfo />
@@ -51,6 +42,8 @@ const DetailPage = ({ navigation, route }) => {
         <Specifications />
         <SimilarMovies navigation={navigation} />
       </ScrollView>
+
+      {/* footer */}
       <View style={styles.footer}>
         <TouchableOpacity
           onPress={onBuying}
@@ -68,54 +61,14 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
   },
+  // body
   body: {
     flex: 13 / 14,
     marginHorizontal: 10,
     marginVertical: 10,
   },
-  backgroundImage: {
-    flex: 1,
-    resizeMode: "cover",
-    width: "100%",
-    height: "100%",
-  },
-  iconWrapper: {
-    flex: 1,
-    alignItems: "flex-end",
-    marginRight: -50,
-  },
-  logoWrapper: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  formWrapper: {
-    flex: 2,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  phoneInput: {
-    width: 200,
-    height: 35,
-    borderRadius: 17,
-    backgroundColor: "#fff",
-    paddingHorizontal: 10,
-  },
-  button: {
-    width: 200,
-    height: 35,
-    borderRadius: 17,
-    marginTop: 20,
-    backgroundColor: "rgb(21, 54, 195)",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  text: {
-    textTransform: "uppercase",
-    fontSize: 20,
-    color: "#fff",
-    fontWeight: "500",
-  },
+
+  // footer
   footer: {
     position: "absolute",
     bottom: 0,

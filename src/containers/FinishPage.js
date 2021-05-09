@@ -1,17 +1,11 @@
 import React from "react";
-import CartItem from "../components/cart/CartItem";
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
-import {
-  ScrollView,
-  TextInput,
-  TouchableOpacity,
-} from "react-native-gesture-handler";
-import { Feather } from "@expo/vector-icons";
-import { useSelector } from "react-redux";
 import globalStyles from "../globalStyles";
-import PriceItem from "../components/detail/PriceItem";
+import { SafeAreaView, StyleSheet, Text } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const FinishPage = ({ navigation }) => {
+  // Component displays screen after pressing purchase button in cart
+
   return (
     <SafeAreaView style={[globalStyles.dpCt, styles.container]}>
       <Text>Successfully purchased.</Text>

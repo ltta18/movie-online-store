@@ -1,15 +1,18 @@
 import React from "react";
+import PriceItem from "../common/PriceItem";
+import globalStyles from "../../globalStyles";
 import { StyleSheet, Image, View, Text } from "react-native";
 import { useSelector } from "react-redux";
-import globalStyles from "../../globalStyles";
 import { getImage } from "../../utils";
-import PriceItem from "./PriceItem";
 
 const MainInfo = () => {
+  // Component displays film's general info in Detail Page
+
   const film = useSelector((state) => state.filmReducer.fetchDetail);
 
   return (
     <View style={styles.container}>
+      {/* poster */}
       <Image
         source={
           film.poster_path
@@ -20,6 +23,8 @@ const MainInfo = () => {
         }
         style={[globalStyles.image, globalStyles.m5]}
       />
+
+      {/* film's general info */}
       <Text style={styles.title}>{film?.title}</Text>
       <View style={[globalStyles.dpSb, globalStyles.fw]}>
         <Text style={styles.companyWrapper}>

@@ -1,8 +1,8 @@
 import React from "react";
-import { StyleSheet, View, Text, Platform } from "react-native";
+import globalStyles from "../../globalStyles";
+import { StyleSheet, View, Text } from "react-native";
 import { Col, Grid, Row } from "react-native-easy-grid";
 import { useSelector } from "react-redux";
-import globalStyles from "../../globalStyles";
 
 const specs = {
   title: "Title",
@@ -11,8 +11,6 @@ const specs = {
   genres: "Genres",
   production_companies: "Production Company",
   vote_average: "Vote Average",
-  budget: "Budget",
-  revenue: "Revenue",
   homepage: "Home Page",
 };
 
@@ -21,10 +19,14 @@ const listToStr = (list) => {
 };
 
 const Specifications = () => {
+  // Component displays film's detailed info
+
   const film = useSelector((state) => state.filmReducer.fetchDetail);
+
   return (
     <View style={[globalStyles.dpCt, styles.container]}>
       <Text style={styles.specsTitle}>Detail</Text>
+
       <Grid style={[globalStyles.fw, styles.grid]}>
         {Object.keys(specs).map((key, index) => (
           <Row
@@ -34,12 +36,15 @@ const Specifications = () => {
               index % 2 ? styles.evenRow : styles.oddRow,
             ]}
           >
+            {/* Specification attributes */}
             <Col size={25}>
               <Text>{specs[key]}</Text>
             </Col>
+
+            {/* Specification values */}
             <Col size={75} style={globalStyles.m5}>
               {film && (
-                <Text numberOfLines={5} minHeight={150}>
+                <Text numberOfLines={15} minHeight={150}>
                   {Array.isArray(film[key]) ? listToStr(film[key]) : film[key]}
                 </Text>
               )}
@@ -69,10 +74,6 @@ const styles = StyleSheet.create({
   },
   evenRow: {
     backgroundColor: "#F6F6F6",
-  },
-  leftCell: { flexWrap: "wrap" },
-  rightCell: {
-    marginLeft: 10,
   },
 });
 

@@ -9,9 +9,11 @@ import {
 import { Feather } from "@expo/vector-icons";
 import { useSelector } from "react-redux";
 import globalStyles from "../globalStyles";
-import PriceItem from "../components/detail/PriceItem";
+import PriceItem from "../components/common/PriceItem";
 
 const CartPage = ({ navigation }) => {
+  // Component for Cart Page
+
   const [modalVisible, setModalVisible] = useState(false);
   const { cart, totalMoney } = useSelector((state) => state.cartReducer);
 
@@ -25,12 +27,15 @@ const CartPage = ({ navigation }) => {
         },
       ]}
     >
+      {/* cart header */}
       <View style={[styles.header, globalStyles.m10]}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Feather name="chevron-left" size={30} color="#1434C3" />
         </TouchableOpacity>
         <Text style={styles.title}>Cart</Text>
       </View>
+
+      {/* cart body */}
       <ScrollView style={styles.body}>
         {cart &&
           Object.keys(cart)?.map((id, i) => (
@@ -42,6 +47,8 @@ const CartPage = ({ navigation }) => {
             />
           ))}
       </ScrollView>
+
+      {/* money detail */}
       <View style={[styles.couponWrapper, globalStyles.dpCt, globalStyles.m10]}>
         <TextInput editable style={styles.textInput} placeholder="Coupon" />
         <TouchableOpacity
@@ -64,6 +71,8 @@ const CartPage = ({ navigation }) => {
           <Text style={styles.total}>Total</Text>
           <PriceItem price={totalMoney} cls={styles.total} />
         </View>
+
+        {/* checkout button */}
         <TouchableOpacity
           style={[styles.button, globalStyles.dpCt]}
           onPress={() => navigation.navigate("Finish")}
@@ -80,6 +89,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
   },
+  // header
   header: {
     flex: 1 / 9,
     flexDirection: "row",
@@ -93,12 +103,16 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 24,
   },
+
+  // body
   body: {
     flex: 3 / 9,
     elevation: 2,
     zIndex: 2,
     width: "100%",
   },
+
+  // money detail
   couponWrapper: {
     flex: 1 / 9,
     elevation: 2,
@@ -125,6 +139,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
   },
+
   checkOutWrapper: {
     flex: 4 / 9,
     justifyContent: "center",
@@ -143,6 +158,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginBottom: 5,
   },
+
+  // checkout button
   button: {
     width: 300,
     height: 50,

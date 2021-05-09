@@ -1,9 +1,11 @@
 import React from "react";
+import globalStyles from "globalStyles";
 import { View, TouchableOpacity, StyleSheet } from "react-native";
 import { Feather } from "@expo/vector-icons";
-import globalStyles from "globalStyles";
 
 export default function NoLogoHeader({ navigation }) {
+  // component displays header with back button and cart icon only
+
   return (
     <View style={[globalStyles.dpSb, globalStyles.m10, styles.header]}>
       <TouchableOpacity onPress={() => navigation.goBack()}>

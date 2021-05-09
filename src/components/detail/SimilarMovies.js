@@ -1,15 +1,11 @@
 import React from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  TouchableOpacity,
-  FlatList,
-} from "react-native";
-import CategoryItem from "components/home/CategoryItem";
+import FilmBox from "components/common/FilmBox";
+import { StyleSheet, View, Text, FlatList } from "react-native";
 import { useSelector } from "react-redux";
 
 const SimilarMovies = ({ navigation }) => {
+  // Component displays similar movies to the current film
+
   const data = useSelector(
     (state) => state.filmReducer.fetchRecommendation?.results
   );
@@ -22,11 +18,7 @@ const SimilarMovies = ({ navigation }) => {
           <FlatList
             data={data}
             renderItem={(item) => (
-              <CategoryItem
-                item={item.item}
-                width={200}
-                navigation={navigation}
-              />
+              <FilmBox item={item.item} width={200} navigation={navigation} />
             )}
             keyExtractor={(_item, index) => String(index)}
             horizontal={true}
@@ -58,7 +50,6 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: "bold",
     fontSize: 18,
-    // width: "65%",
     marginTop: 20,
   },
 });

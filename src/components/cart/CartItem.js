@@ -1,15 +1,22 @@
-import React, { useState } from "react";
-import { Button, Image, Modal, StyleSheet, Text, View } from "react-native";
+import React from "react";
+import PriceItem from "components/common/PriceItem";
+import globalStyles from "globalStyles";
+import { Image, Modal, StyleSheet, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Feather } from "@expo/vector-icons";
-import PriceItem from "../detail/PriceItem";
-import { getImage } from "../../utils";
+import { getImage } from "utils";
 import { useDispatch } from "react-redux";
-import { removeFilm } from "../../redux/actions/cart";
-import globalStyles from "../../globalStyles";
+import { removeFilm } from "reduxHandler/actions/cart";
 
 const CartItem = ({ film, modalVisible, setModalVisible }) => {
+  // Component displays item in cart
+  // Params: (3)
+  // film: Object
+  // modalVisible: bool
+  // setModalVisible: function
+
   const dispatch = useDispatch();
+
   const onConfirm = () => {
     dispatch(removeFilm(film?.id));
     setModalVisible(!modalVisible);
@@ -18,6 +25,7 @@ const CartItem = ({ film, modalVisible, setModalVisible }) => {
   return (
     <>
       <View style={styles.container}>
+        {/* poster */}
         <View style={styles.imageWrapper}>
           <Image
             source={{ uri: getImage(film?.poster_path) }}
@@ -25,20 +33,24 @@ const CartItem = ({ film, modalVisible, setModalVisible }) => {
             resizeMode="contain"
           />
         </View>
+
+        {/* film's general info */}
         <View style={styles.detail}>
           <Text style={styles.title}>{film?.title}</Text>
           <Text style={styles.company}>
             By{" "}
             {Object.keys(film).length > 0 && film.production_companies[0].name}
           </Text>
-
           <PriceItem price={15.0} cls={styles.price} />
         </View>
+
+        {/* remove icon */}
         <TouchableOpacity onPress={() => setModalVisible(true)}>
-          <Feather name="x" size={24} color="black" style={styles.removeIcon} />
+          <Feather name="x" size={24} color="black" style={globalStyles.m10} />
         </TouchableOpacity>
       </View>
-      {/* Modal */}
+
+      {/* modal */}
       <View style={styles.centeredView}>
         <Modal
           animationType="slide"
@@ -85,6 +97,8 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
   },
+
+  // poster
   imageWrapper: {
     flex: 1,
     marginHorizontal: 10,
@@ -95,6 +109,8 @@ const styles = StyleSheet.create({
     width: "100%",
     resizeMode: "contain",
   },
+
+  // film's general info
   detail: {
     flex: 2,
   },
@@ -109,17 +125,13 @@ const styles = StyleSheet.create({
   },
   price: {
     color: "#C31414",
-
     marginBottom: 10,
   },
   discountedPrice: {
     color: "#C31414",
     marginBottom: 5,
   },
-  removeIcon: {
-    marginRight: 10,
-    marginLeft: 10,
-  },
+
   // modal
   centeredView: {
     flex: 1,
@@ -168,6 +180,7 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: "center",
+    color: "rgba(0,0,0,0.5)",
   },
 });
 

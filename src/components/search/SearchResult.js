@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import { View, StyleSheet, Text, Image } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
-import CategoryItem from "components/home/CategoryItem";
+import FilmBox from "components/common/FilmBox";
 import { useSelector } from "react-redux";
 
 const SearchResult = ({ navigation }) => {
+  // Component displays search result
+
   const searchResult = useSelector(
     (state) => state.searchReducer.searchByTitle
   );
@@ -17,11 +19,7 @@ const SearchResult = ({ navigation }) => {
           <FlatList
             data={Object.keys(searchResult).map((item) => searchResult[item])}
             renderItem={(item) => (
-              <CategoryItem
-                item={item.item}
-                width="48%"
-                navigation={navigation}
-              />
+              <FilmBox item={item.item} width="48%" navigation={navigation} />
             )}
             keyExtractor={(_item, index) => String(index)}
             numColumns={2}

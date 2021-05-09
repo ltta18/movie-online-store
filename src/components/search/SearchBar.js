@@ -1,9 +1,15 @@
 import React from "react";
+import globalStyles from "../../globalStyles";
 import { View, StyleSheet, TextInput } from "react-native";
 import { Feather } from "@expo/vector-icons";
-import globalStyles from "../../globalStyles";
 
-export default function SearchBar({ search, handleSearch, onSearch }) {
+const SearchBar = ({ search, handleSearch, onSearch }) => {
+  // Component displays search bar
+  // Params: (3)
+  // search: String
+  // handleSearch: function
+  // onSearch: function
+
   const handleRemoveSearchAll = () => {
     handleSearch("");
   };
@@ -39,7 +45,7 @@ export default function SearchBar({ search, handleSearch, onSearch }) {
       )}
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   subtitle: {
@@ -73,3 +79,5 @@ const styles = StyleSheet.create({
     marginRight: 20,
   },
 });
+
+export default SearchBar;

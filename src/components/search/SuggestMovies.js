@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
-import CategoryItem from "components/home/CategoryItem";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Feather } from "@expo/vector-icons";
-import globalStyles from "../../globalStyles";
 import { useSelector } from "react-redux";
+import FilmBox from "components/common/FilmBox";
+import globalStyles from "../../globalStyles";
 
 const SuggestMovies = ({ navigation }) => {
+  // Component displays suggested movies based on the popularity
+
   const popular = useSelector(
     (state) => state.filmReducer.fetchPopular?.results
   );
   const [suggestList, setSuggestList] = useState([]);
   const [suggestPage, setSuggestPage] = useState(0);
 
+  // suggest list data handler
   useEffect(() => {
     popular && getSuggestList(0);
   }, [popular]);
@@ -24,6 +27,7 @@ const SuggestMovies = ({ navigation }) => {
     setSuggestList(arr);
   };
 
+  // pagination handler
   const handleNextSuggestPage = () => {
     const start = (suggestPage + 1) * 2;
     getSuggestList(start);
@@ -50,10 +54,11 @@ const SuggestMovies = ({ navigation }) => {
             style={suggestPage < 1 ? styles.hide : ""}
           />
         </TouchableOpacity>
+
         <View style={{ flexDirection: "row", width: "75%" }}>
           {suggestList.map((item, i) =>
             item ? (
-              <CategoryItem
+              <FilmBox
                 key={i}
                 item={item}
                 width="50%"
@@ -62,6 +67,7 @@ const SuggestMovies = ({ navigation }) => {
             ) : null
           )}
         </View>
+
         <TouchableOpacity
           onPress={() => handleNextSuggestPage()}
           delayPressIn={1500}

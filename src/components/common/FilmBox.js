@@ -1,11 +1,16 @@
 import React from "react";
+import PriceItem from "./PriceItem";
+import globalStyles from "globalStyles";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import globalStyles from "globalStyles";
 import { getImage } from "utils";
-import PriceItem from "../detail/PriceItem";
 
-const CategoryItem = ({ item, width, navigation }) => {
+const FilmBox = ({ item, width, navigation }) => {
+  // Component displays the common style for film box
+  // Params: (2)
+  // item: Object
+  // width: Number
+
   return (
     <View style={[styles.shadow, { width: width, padding: 10 }]}>
       <TouchableOpacity
@@ -59,4 +64,4 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 });
-export default CategoryItem;
+export default FilmBox;

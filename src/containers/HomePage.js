@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import CategoryList from "components/home/CategoryList";
+import Logo from "components/common/Logo";
+import globalStyles from "globalStyles";
 import {
   FlatList,
   SafeAreaView,
-  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -16,10 +17,28 @@ import {
   fetchPopular,
   fetchTopRated,
 } from "reduxHandler/actions/film";
-import Logo from "components/common/Logo";
-import globalStyles from "../globalStyles";
 
 const HomePage = ({ navigation }) => {
+  // Component displays Home Page
+
+  const GoTopButton = () => {
+    // Component displays go to the top button
+    return (
+      <TouchableOpacity
+        style={styles.goTopButton}
+        onPress={() =>
+          this.scroll.scrollToOffset({ animated: true, offset: 0 })
+        }
+        key="back"
+      >
+        <Text style={styles.goTopText} key="back-text">
+          Go back to top
+        </Text>
+        <Feather name="chevron-up" size={30} color="#1434C3" key="back-icon" />
+      </TouchableOpacity>
+    );
+  };
+
   const dispatch = useDispatch();
   const category = {
     nowPlaying: {
@@ -44,11 +63,10 @@ const HomePage = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      {/* Header */}
       <View style={[styles.header, globalStyles.m10]}>
         <View>
-          <View>
-            <Logo />
-          </View>
+          <Logo />
           <Text style={styles.subtitle}>Welcome!</Text>
         </View>
         <View style={styles.iconBox}>
@@ -71,6 +89,7 @@ const HomePage = ({ navigation }) => {
         </View>
       </View>
 
+      {/* body */}
       <FlatList
         style={styles.body}
         ref={(c) => {
@@ -86,35 +105,8 @@ const HomePage = ({ navigation }) => {
           />
         )}
         keyExtractor={(_item, index) => "category-list" + String(index)}
-        ListFooterComponent={
-          <TouchableOpacity
-            style={styles.goTopButton}
-            onPress={() =>
-              this.scroll.scrollToOffset({ animated: true, offset: 0 })
-            }
-            key="back"
-          >
-            <Text style={styles.goTopText} key="back-text">
-              Go back to top
-            </Text>
-            <Feather
-              name="chevron-up"
-              size={30}
-              color="#1434C3"
-              key="back-icon"
-            />
-          </TouchableOpacity>
-        }
+        ListFooterComponent={<GoTopButton />}
       />
-      {/* {Object.keys(category)?.map((item) => (
-          <CategoryList
-            title={category[item].title}
-            item={category[item].data}
-            navigation={navigation}
-            key={category[item].id}
-          />
-        ))} */}
-      {/* </FlatList> */}
     </SafeAreaView>
   );
 };
@@ -123,8 +115,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
-    // backgroundColor: "#fff",
   },
+  // header
   header: {
     flex: 2 / 12,
     flexDirection: "row",
@@ -140,6 +132,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
     marginLeft: 20,
   },
+  // body
   body: {
     flex: 10 / 12,
     elevation: 2,

@@ -3,19 +3,22 @@ import NoLogoHeader from "components/common/NoLogoHeader";
 import SearchBar from "components/search/SearchBar";
 import HistoryList from "components/search/HistoryList";
 import SearchResult from "components/search/SearchResult";
+import SuggestMovies from "components/search/SuggestMovies";
+import globalStyles from "globalStyles";
 import {
   SafeAreaView,
   View,
   StyleSheet,
   ActivityIndicator,
 } from "react-native";
-import globalStyles from "globalStyles";
+
 import { searchByTitle } from "reduxHandler/actions/search";
 import { useDispatch } from "react-redux";
-import SuggestMovies from "components/search/SuggestMovies";
 import { addHistory } from "../redux/actions/history";
 
 const SearchPage = ({ navigation }) => {
+  // Component displays Search Page
+
   const [search, setSearch] = useState("");
   const [isSearch, setIsSearch] = useState(false);
 

@@ -12,10 +12,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeAllHistory, removeHistory } from "../../redux/actions/history";
 
 const HistoryList = () => {
+  // Component displays search history list
+
   const dispatch = useDispatch();
   const historyList = useSelector((state) => state.historyReducer);
 
   const HistoryItem = ({ item, index }) => {
+    // Component displays item in search history list
+    // Params: (2)
+    // item: Object
+    // index: Number
+
     return (
       <View style={styles.historyItem}>
         <Text>{item}</Text>
@@ -28,12 +35,15 @@ const HistoryList = () => {
 
   return (
     <View style={[styles.history, globalStyles.m10]}>
+      {/* history list header */}
       <View style={styles.historyHeader}>
         <Text style={styles.title}>Search History</Text>
         <TouchableOpacity onPress={() => dispatch(removeAllHistory())}>
           <Text style={styles.subtitle}>Clear history</Text>
         </TouchableOpacity>
       </View>
+
+      {/* history list content */}
       <FlatList
         data={historyList}
         renderItem={({ item, index }) => (
