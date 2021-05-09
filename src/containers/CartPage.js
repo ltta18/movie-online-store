@@ -12,7 +12,7 @@ import globalStyles from "../globalStyles";
 import PriceItem from "../components/detail/PriceItem";
 
 const CartPage = ({ navigation }) => {
-  const cart = useSelector((state) => state.cart);
+  const { cart, totalMoney } = useSelector((state) => state.cartReducer);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -23,9 +23,10 @@ const CartPage = ({ navigation }) => {
         <Text style={styles.title}>Cart</Text>
       </View>
       <ScrollView style={styles.body}>
-        {cart?.addedMovies?.map((movie, i) => (
-          <CartItem key={i} data={movie} />
-        ))}
+        {cart &&
+          Object.keys(cart)?.map((id, i) => (
+            <CartItem key={i} film={cart[id]} />
+          ))}
       </ScrollView>
       <View style={[styles.couponWrapper, globalStyles.dpCt, globalStyles.m10]}>
         <TextInput editable style={styles.textInput} placeholder="Coupon" />
@@ -39,7 +40,7 @@ const CartPage = ({ navigation }) => {
       <View style={[styles.checkOutWrapper, globalStyles.m10]}>
         <View style={[styles.checkOutText, globalStyles.dpSb]}>
           <Text style={styles.greyText}>Subtotal</Text>
-          <PriceItem price={cart?.sellPriceTotal} cls={styles.greyText} />
+          <PriceItem price={totalMoney} cls={styles.greyText} />
         </View>
         <View style={[styles.checkOutText, globalStyles.dpSb]}>
           <Text style={styles.greyText}>Discount</Text>
@@ -47,7 +48,7 @@ const CartPage = ({ navigation }) => {
         </View>
         <View style={[styles.checkOutText, globalStyles.dpSb]}>
           <Text style={styles.total}>Total</Text>
-          <PriceItem price={cart?.sellPriceTotal} cls={styles.total} />
+          <PriceItem price={totalMoney} cls={styles.total} />
         </View>
         <TouchableOpacity style={[styles.button, globalStyles.dpCt]}>
           <Text style={styles.buttonText}>CHECK OUT</Text>
@@ -79,7 +80,6 @@ const styles = StyleSheet.create({
     flex: 3 / 9,
     elevation: 2,
     zIndex: 2,
-    backgroundColor: "#fff",
     width: "100%",
   },
   couponWrapper: {

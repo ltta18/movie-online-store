@@ -4,10 +4,13 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { Feather } from "@expo/vector-icons";
 import PriceItem from "../detail/PriceItem";
 import { getImage } from "../../utils";
+import { useDispatch } from "react-redux";
+import { removeFilm } from "../../redux/actions/cart";
 
-const CartItem = ({ key, film }) => {
+const CartItem = ({ film }) => {
+  const dispatch = useDispatch();
   return (
-    <View style={styles.container} key={key}>
+    <View style={styles.container}>
       <View style={styles.imageWrapper}>
         <Image
           source={{ uri: getImage(film?.poster_path) }}
@@ -23,7 +26,7 @@ const CartItem = ({ key, film }) => {
 
         <PriceItem price={15.0} cls={styles.price} />
       </View>
-      <TouchableOpacity onPress={() => onRemovingFromCart()}>
+      <TouchableOpacity onPress={() => dispatch(removeFilm(film?.id))}>
         <Feather name="x" size={24} color="black" style={styles.removeIcon} />
       </TouchableOpacity>
     </View>
@@ -33,9 +36,10 @@ const CartItem = ({ key, film }) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    backgroundColor: "pink",
-    marginVertical: 15,
+    backgroundColor: "#fff",
+    marginVertical: 5,
     paddingTop: 10,
+    paddingBottom: 10,
   },
   imageWrapper: {
     flex: 1,

@@ -18,10 +18,12 @@ import globalStyles from "../globalStyles";
 import { fetchDetail } from "../redux/actions/film";
 import { getImage } from "utils";
 import MainInfo from "../components/detail/MainInfo";
+import { addFilm } from "../redux/actions/cart";
 
 const DetailPage = ({ navigation, route }) => {
   const { id } = route.params;
   const film = useSelector((state) => state.filmReducer.fetchDetail);
+  const cart = useSelector((state) => state.cartReducer);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchRecommendation(id));
@@ -31,6 +33,7 @@ const DetailPage = ({ navigation, route }) => {
   const onBuying = () => {
     alert("Added to cart");
     // addingToCart
+    dispatch(addFilm({ [id]: film }));
   };
 
   return (
