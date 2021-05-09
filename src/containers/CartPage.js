@@ -50,7 +50,10 @@ const CartPage = ({ navigation }) => {
           <Text style={styles.total}>Total</Text>
           <PriceItem price={totalMoney} cls={styles.total} />
         </View>
-        <TouchableOpacity style={[styles.button, globalStyles.dpCt]}>
+        <TouchableOpacity
+          style={[styles.button, globalStyles.dpCt]}
+          onPress={() => navigation.navigate("Finish")}
+        >
           <Text style={styles.buttonText}>CHECK OUT</Text>
         </TouchableOpacity>
       </View>

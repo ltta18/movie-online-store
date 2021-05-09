@@ -5,11 +5,11 @@ import { Provider } from "react-redux";
 import { store } from "reduxHandler";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import Logo from "components/common/Logo";
 import DetailPage from "./src/containers/DetailPage";
 import HomePage from "./src/containers/HomePage";
 import SearchPage from "./src/containers/SearchPage";
 import CartPage from "./src/containers/CartPage";
+import FinishPage from "./src/containers/FinishPage";
 
 const Stack = createStackNavigator();
 
@@ -37,6 +37,11 @@ export default function App() {
           <Stack.Screen
             name="Cart"
             component={CartPage}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Finish"
+            component={FinishPage}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>
