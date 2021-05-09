@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import CartItem from "../components/cart/CartItem";
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import {
@@ -12,10 +12,19 @@ import globalStyles from "../globalStyles";
 import PriceItem from "../components/detail/PriceItem";
 
 const CartPage = ({ navigation }) => {
+  const [modalVisible, setModalVisible] = useState(false);
   const { cart, totalMoney } = useSelector((state) => state.cartReducer);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView
+      style={[
+        styles.container,
+        {
+          opacity: !modalVisible ? "1" : "0.3",
+          zIndex: 10,
+        },
+      ]}
+    >
       <View style={[styles.header, globalStyles.m10]}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Feather name="chevron-left" size={30} color="#1434C3" />
@@ -25,7 +34,12 @@ const CartPage = ({ navigation }) => {
       <ScrollView style={styles.body}>
         {cart &&
           Object.keys(cart)?.map((id, i) => (
-            <CartItem key={i} film={cart[id]} />
+            <CartItem
+              key={i}
+              film={cart[id]}
+              modalVisible={modalVisible}
+              setModalVisible={setModalVisible}
+            />
           ))}
       </ScrollView>
       <View style={[styles.couponWrapper, globalStyles.dpCt, globalStyles.m10]}>
