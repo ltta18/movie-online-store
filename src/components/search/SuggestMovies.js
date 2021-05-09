@@ -2,24 +2,19 @@ import React, { useState, useEffect } from "react";
 import CategoryItem from "components/home/CategoryItem";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Feather } from "@expo/vector-icons";
-import { useDispatch, useSelector } from "react-redux";
+import globalStyles from "../../globalStyles";
+import { useSelector } from "react-redux";
 
-const SuggestMovies = () => {
+const SuggestMovies = ({ navigation }) => {
   const popular = useSelector(
     (state) => state.filmReducer.fetchPopular?.results
   );
   const [suggestList, setSuggestList] = useState([]);
   const [suggestPage, setSuggestPage] = useState(0);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     popular && getSuggestList(0);
-    console.log(popular);
   }, [popular]);
-
-  useEffect(() => {
-    dispatch(fetchPopular());
-  }, []);
 
   const getSuggestList = (start) => {
     const arr = [];
@@ -42,7 +37,7 @@ const SuggestMovies = () => {
   };
 
   return (
-    <View style={styles.suggest}>
+    <View style={[styles.suggest, globalStyles.m10]}>
       <Text style={styles.title}>Movie Suggestions</Text>
       <View style={styles.suggestBody}>
         <TouchableOpacity
@@ -61,8 +56,8 @@ const SuggestMovies = () => {
               <CategoryItem
                 key={i}
                 item={item}
-                showDiscounted={false}
                 width="50%"
+                navigation={navigation}
               />
             ) : null
           )}
@@ -94,6 +89,7 @@ const styles = StyleSheet.create({
   },
   suggest: {
     flex: 4 / 7,
+    justifyContent: "flex-end",
   },
   suggestBody: {
     flexDirection: "row",

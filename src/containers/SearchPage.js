@@ -9,56 +9,51 @@ import {
   StyleSheet,
   ActivityIndicator,
 } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
 import globalStyles from "globalStyles";
 import { searchByTitle } from "reduxHandler/actions/search";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SuggestMovies from "components/search/SuggestMovies";
 
 const SearchPage = ({ navigation }) => {
   const [search, setSearch] = useState("");
   const [historyList, setHistoryList] = useState([]);
+  const [isSearch, setIsSearch] = useState(false);
+
   const dispatch = useDispatch();
-  const onNavigatingToDetailScreen = (data) => {
-    // navigate
-  };
   const handleSearch = (text) => {
     setSearch(text);
+    setIsSearch(true);
   };
   const onSearch = () => {
     dispatch(searchByTitle(search));
+    setIsSearch(false);
     setHistoryList((prev) => [...prev, search]);
   };
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
-        <NoLogoHeader />
-        <SearchBar
-          search={search}
-          handleSearch={(text) => handleSearch(text)}
-          onSearch={onSearch}
-        />
-        {search ? (
-          search !== "" ? (
-            <ActivityIndicator size="large" />
-          ) : (
-            <View style={[styles.body, globalStyles.m10]}>
-              <SearchResult
-                search={search}
-                onPress={onNavigatingToDetailScreen}
-              />
-            </View>
-          )
-        ) : (
-          <View style={styles.body}>
-            <HistoryList
-              historyList={historyList}
-              setHistoryList={setHistoryList}
-            />
-            <SuggestMovies />
+      <NoLogoHeader navigation={navigation} />
+      <SearchBar
+        search={search}
+        handleSearch={(text) => handleSearch(text)}
+        onSearch={onSearch}
+      />
+      {search ? (
+        !isSearch ? (
+          <View style={[styles.body, globalStyles.m10]}>
+            <SearchResult navigation={navigation} />
           </View>
-        )}
-      </ScrollView>
+        ) : (
+          <ActivityIndicator size="large" style={{ marginTop: 30 }} />
+        )
+      ) : (
+        <View style={styles.body}>
+          <HistoryList
+            historyList={historyList}
+            setHistoryList={setHistoryList}
+          />
+          <SuggestMovies navigation={navigation} />
+        </View>
+      )}
     </SafeAreaView>
   );
 };
@@ -70,7 +65,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   body: {
-    flex: 9 / 11,
+    flex: 12 / 14,
   },
 });
 

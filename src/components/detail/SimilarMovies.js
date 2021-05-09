@@ -9,7 +9,7 @@ import {
 import CategoryItem from "components/home/CategoryItem";
 import { useSelector } from "react-redux";
 
-const SuggestDetail = () => {
+const SimilarMovies = ({ navigation }) => {
   const data = useSelector(
     (state) => state.filmReducer.fetchRecommendation?.results
   );
@@ -18,11 +18,15 @@ const SuggestDetail = () => {
     <View style={styles.container}>
       <Text style={styles.title}>Similar Movies</Text>
       <View style={styles.similarItemWrapper}>
-        {data.length > 0 && (
+        {data && data.length > 0 && (
           <FlatList
             data={data}
             renderItem={(item) => (
-              <CategoryItem item={item?.item} width={200} />
+              <CategoryItem
+                item={item.item}
+                width={200}
+                navigation={navigation}
+              />
             )}
             keyExtractor={(_item, index) => String(index)}
             horizontal={true}
@@ -59,4 +63,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SuggestDetail;
+export default SimilarMovies;

@@ -17,14 +17,9 @@ import {
   fetchTopRated,
 } from "reduxHandler/actions/film";
 import Logo from "components/common/Logo";
+import globalStyles from "../globalStyles";
 
-const HomePage = () => {
-  const handleGoTop = () => {
-    this.scroll.scrollTo({
-      y: 0,
-      animated: true,
-    });
-  };
+const HomePage = ({ navigation }) => {
   const dispatch = useDispatch();
   const category = {
     nowPlaying: {
@@ -49,17 +44,15 @@ const HomePage = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
+      <View style={[styles.header, globalStyles.m10]}>
         <View>
-          <View style={styles.logo}>
+          <View>
             <Logo />
           </View>
           <Text style={styles.subtitle}>Welcome!</Text>
         </View>
         <View style={styles.iconBox}>
-          <TouchableOpacity
-          // onPress={onNavigatingToSearchScreen}
-          >
+          <TouchableOpacity onPress={() => navigation.navigate("Search")}>
             <Feather
               name="search"
               size={25}
@@ -67,9 +60,7 @@ const HomePage = () => {
               style={styles.headerIcon}
             />
           </TouchableOpacity>
-          <TouchableOpacity
-          // onPress={onNavigatingToCartScreen}
-          >
+          <TouchableOpacity onPress={() => navigation.navigate("Cart")}>
             <Feather
               name="shopping-cart"
               size={25}
@@ -80,28 +71,50 @@ const HomePage = () => {
         </View>
       </View>
 
-      <ScrollView
+      <FlatList
         style={styles.body}
         ref={(c) => {
           this.scroll = c;
         }}
-      >
-        {Object.keys(category)?.map((item) => (
+        data={Object.keys(category)}
+        renderItem={(item) => (
+          <CategoryList
+            title={category[item.item]?.title}
+            item={category[item.item]?.data}
+            navigation={navigation}
+            key={category[item.item]?.id}
+          />
+        )}
+        keyExtractor={(_item, index) => "category-list" + String(index)}
+        ListFooterComponent={
+          <TouchableOpacity
+            style={styles.goTopButton}
+            onPress={() =>
+              this.scroll.scrollToOffset({ animated: true, offset: 0 })
+            }
+            key="back"
+          >
+            <Text style={styles.goTopText} key="back-text">
+              Go back to top
+            </Text>
+            <Feather
+              name="chevron-up"
+              size={30}
+              color="#1434C3"
+              key="back-icon"
+            />
+          </TouchableOpacity>
+        }
+      />
+      {/* {Object.keys(category)?.map((item) => (
           <CategoryList
             title={category[item].title}
             item={category[item].data}
-
-            // onPress={onNavigatingToDetailScreen}
+            navigation={navigation}
+            key={category[item].id}
           />
-        ))}
-        <TouchableOpacity
-          style={styles.goTopButton}
-          onPress={() => handleGoTop()}
-        >
-          <Text style={styles.goTopText}>Go back to top</Text>
-          <Feather name="chevron-up" size={30} color="#1434C3" />
-        </TouchableOpacity>
-      </ScrollView>
+        ))} */}
+      {/* </FlatList> */}
     </SafeAreaView>
   );
 };
@@ -110,18 +123,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
+    // backgroundColor: "#fff",
   },
   header: {
-    flex: 1 / 10,
+    flex: 2 / 12,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: 20,
-    elevation: 2,
-    zIndex: 2,
-  },
-  logo: {
-    marginTop: 15,
+    elevation: 10,
+    zIndex: 10,
   },
   iconBox: {
     flexDirection: "row",
@@ -131,14 +141,14 @@ const styles = StyleSheet.create({
     marginLeft: 20,
   },
   body: {
-    flex: 9 / 10,
+    flex: 10 / 12,
     elevation: 2,
     zIndex: 2,
-    backgroundColor: "white",
   },
   subtitle: {
     color: "#1434C3",
     fontWeight: "200",
+    marginTop: 10,
   },
   goTopText: {
     color: "#707070",

@@ -17,13 +17,8 @@ const CartPage = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={[styles.header, globalStyles.m10]}>
-        <TouchableOpacity>
-          <Feather
-            name="chevron-left"
-            size={30}
-            color="#239FE6"
-            onPress={() => navigation.goBack()}
-          />
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Feather name="chevron-left" size={30} color="#1434C3" />
         </TouchableOpacity>
         <Text style={styles.title}>Cart</Text>
       </View>

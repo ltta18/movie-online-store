@@ -47,15 +47,14 @@ const styles = StyleSheet.create({
     fontWeight: "200",
   },
   searchBar: {
-    flex: 1 / 11,
-    marginTop: 10,
+    flex: 1 / 14,
     borderRadius: 3,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
     paddingLeft: 20,
     overflow: "hidden",
-    backgroundColor: "#F2F2F2",
+    backgroundColor: "#fff",
     shadowColor: "#000",
     shadowOffset: {
       width: 2,
@@ -69,7 +68,6 @@ const styles = StyleSheet.create({
   },
   searchInput: {
     backgroundColor: "transparent",
-    flexGrow: 1,
   },
   searchIcon: {
     marginRight: 20,

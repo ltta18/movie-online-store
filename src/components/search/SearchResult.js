@@ -1,26 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, StyleSheet, Text, Image } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import CategoryItem from "components/home/CategoryItem";
 import { useSelector } from "react-redux";
 
-const SearchResult = ({ result, onPress }) => {
+const SearchResult = ({ navigation }) => {
   const searchResult = useSelector(
     (state) => state.searchReducer.searchByTitle
   );
+
   return (
     <View>
       <Text style={styles.title}>Search Results</Text>
       <View style={styles.categoryContainer}>
         {Object.keys(searchResult).length > 0 ? (
           <FlatList
-            data={result}
+            data={Object.keys(searchResult).map((item) => searchResult[item])}
             renderItem={(item) => (
               <CategoryItem
                 item={item.item}
-                showDiscounted={true}
-                onPress={onPress}
                 width="48%"
+                navigation={navigation}
               />
             )}
             keyExtractor={(_item, index) => String(index)}

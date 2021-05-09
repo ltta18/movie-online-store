@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     fontWeight: "200",
   },
   history: {
-    flex: 2 / 7,
+    flex: 3 / 7,
   },
   historyHeader: {
     flexDirection: "row",

@@ -19,15 +19,13 @@ import { fetchDetail } from "../redux/actions/film";
 import { getImage } from "utils";
 import MainInfo from "../components/detail/MainInfo";
 
-const DetailPage = ({ id }) => {
-  const recommend = useSelector(
-    (state) => state.filmReducer.fetchRecommendation?.results
-  );
+const DetailPage = ({ navigation, route }) => {
+  const { id } = route.params;
   const film = useSelector((state) => state.filmReducer.fetchDetail);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchRecommendation(460465));
-    dispatch(fetchDetail(460465));
+    dispatch(fetchRecommendation(id));
+    dispatch(fetchDetail(id));
   }, []);
 
   const onBuying = () => {
@@ -38,8 +36,9 @@ const DetailPage = ({ id }) => {
   return (
     <SafeAreaView style={styles.container}>
       <NoLogoHeader
-      // onAddingToCart={onAddingToCart}
-      // data={product}
+        // onAddingToCart={onAddingToCart}
+        // data={product}
+        navigation={navigation}
       />
 
       <ScrollView style={styles.body}>
@@ -47,7 +46,7 @@ const DetailPage = ({ id }) => {
           <MainInfo />
         </View>
         <Specifications />
-        <SimilarMovies />
+        <SimilarMovies navigation={navigation} />
       </ScrollView>
       <View style={styles.footer}>
         <TouchableOpacity
@@ -67,7 +66,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   body: {
-    flex: 10 / 11,
+    flex: 13 / 14,
     marginHorizontal: 10,
     marginVertical: 10,
   },

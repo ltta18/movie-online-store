@@ -7,7 +7,7 @@ export function searchByTitle(query) {
     types: SearchTypes.SEARCH_BY_TITLE,
     callAPI: () =>
       getApi(
-        `${DOMAIN}/search/keyword?api_key=${API_KEY}&language=en-US&query=${query}`
+        `${DOMAIN}/search/movie?api_key=${API_KEY}&language=en-US&query=${query}`
       ),
     payload: {},
   };

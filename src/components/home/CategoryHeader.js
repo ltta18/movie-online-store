@@ -12,7 +12,7 @@ const CategoryHeader = (props) => {
   const { title } = props;
 
   return (
-    <View style={globalStyles.p5}>
+    <View style={globalStyles.m10}>
       <Text style={styles.title}>{title}</Text>
     </View>
   );

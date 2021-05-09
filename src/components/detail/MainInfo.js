@@ -11,9 +11,13 @@ const MainInfo = () => {
   return (
     <View style={styles.container}>
       <Image
-        source={{
-          uri: getImage(film?.poster_path),
-        }}
+        source={
+          film.poster_path
+            ? {
+                uri: getImage(film.poster_path),
+              }
+            : require("img/no-result.png")
+        }
         style={[globalStyles.image, globalStyles.m5]}
       />
       <Text style={styles.title}>{film?.title}</Text>

@@ -5,23 +5,28 @@ import globalStyles from "globalStyles";
 import { getImage } from "utils";
 import PriceItem from "../detail/PriceItem";
 
-const CategoryItem = ({ item, width }) => {
-  const onNavigationToDetail = (id) => {};
+const CategoryItem = ({ item, width, navigation }) => {
   return (
     <View style={[styles.shadow, { width: width, padding: 10 }]}>
-      <TouchableOpacity onPress={() => onNavigationToDetail(item?.id)}>
+      <TouchableOpacity
+        onPress={() => navigation.push("Detail", { id: item.id })}
+      >
         <View style={styles.itemImageContainer}>
           <Image
-            source={{
-              uri: getImage(item?.poster_path),
-            }}
+            source={
+              item.poster_path
+                ? {
+                    uri: getImage(item.poster_path),
+                  }
+                : require("img/no-result.png")
+            }
             style={[globalStyles.image, globalStyles.m5]}
           />
         </View>
-        <Text numberOfLines={2} style={[globalStyles.txCt, globalStyles.p5]}>
-          {item?.title}
-        </Text>
       </TouchableOpacity>
+      <Text numberOfLines={2} style={[globalStyles.txCt, globalStyles.p5]}>
+        {item?.title}
+      </Text>
       <View style={[globalStyles.dpCt, styles.priceContainer]}>
         <PriceItem price="15.00" cls={[styles.itemPrice, globalStyles.m5]} />
       </View>
