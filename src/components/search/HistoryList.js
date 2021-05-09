@@ -8,45 +8,36 @@ import {
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import globalStyles from "../../globalStyles";
+import { useDispatch, useSelector } from "react-redux";
+import { removeAllHistory, removeHistory } from "../../redux/actions/history";
 
-const HistoryItem = ({ item, index, removeHistory }) => {
-  return (
-    <View style={styles.historyItem}>
-      <Text>{item}</Text>
-      <TouchableOpacity onPress={() => removeHistory(index)}>
-        <Feather name="x" size={20} />
-      </TouchableOpacity>
-    </View>
-  );
-};
+const HistoryList = () => {
+  const dispatch = useDispatch();
+  const historyList = useSelector((state) => state.historyReducer);
 
-const HistoryList = ({ historyList, setHistoryList }) => {
-  const removeAllHistory = () => {
-    historyList.length = 0;
-  };
-
-  const removeHistory = (index) => {
-    const history = [...historyList];
-    history.splice(index, 1);
-    setHistoryList(history);
+  const HistoryItem = ({ item, index }) => {
+    return (
+      <View style={styles.historyItem}>
+        <Text>{item}</Text>
+        <TouchableOpacity onPress={() => dispatch(removeHistory(index))}>
+          <Feather name="x" size={20} />
+        </TouchableOpacity>
+      </View>
+    );
   };
 
   return (
     <View style={[styles.history, globalStyles.m10]}>
       <View style={styles.historyHeader}>
         <Text style={styles.title}>Search History</Text>
-        <TouchableOpacity onPress={() => removeAllHistory()}>
+        <TouchableOpacity onPress={() => dispatch(removeAllHistory())}>
           <Text style={styles.subtitle}>Clear history</Text>
         </TouchableOpacity>
       </View>
       <FlatList
         data={historyList}
         renderItem={({ item, index }) => (
-          <HistoryItem
-            item={item}
-            index={index}
-            removeHistory={removeHistory}
-          />
+          <HistoryItem item={item} index={index} />
         )}
         keyExtractor={(item, index) => `${index}`}
       />

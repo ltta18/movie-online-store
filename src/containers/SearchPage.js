@@ -11,12 +11,12 @@ import {
 } from "react-native";
 import globalStyles from "globalStyles";
 import { searchByTitle } from "reduxHandler/actions/search";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import SuggestMovies from "components/search/SuggestMovies";
+import { addHistory } from "../redux/actions/history";
 
 const SearchPage = ({ navigation }) => {
   const [search, setSearch] = useState("");
-  const [historyList, setHistoryList] = useState([]);
   const [isSearch, setIsSearch] = useState(false);
 
   const dispatch = useDispatch();
@@ -26,8 +26,8 @@ const SearchPage = ({ navigation }) => {
   };
   const onSearch = () => {
     dispatch(searchByTitle(search));
+    dispatch(addHistory(search));
     setIsSearch(false);
-    setHistoryList((prev) => [...prev, search]);
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -47,10 +47,7 @@ const SearchPage = ({ navigation }) => {
         )
       ) : (
         <View style={styles.body}>
-          <HistoryList
-            historyList={historyList}
-            setHistoryList={setHistoryList}
-          />
+          <HistoryList />
           <SuggestMovies navigation={navigation} />
         </View>
       )}
