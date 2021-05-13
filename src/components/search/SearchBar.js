@@ -74,9 +74,11 @@ const styles = StyleSheet.create({
   },
   searchInput: {
     backgroundColor: "transparent",
+    width: "90%",
   },
   searchIcon: {
     marginRight: 20,
+    flexShrink: 0,
   },
 });
 

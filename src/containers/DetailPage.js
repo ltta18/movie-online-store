@@ -16,7 +16,7 @@ const DetailPage = ({ navigation, route }) => {
 
   const { id } = route.params;
   const film = useSelector((state) => state.filmReducer.fetchDetail);
-  const cart = useSelector((state) => state.cartReducer);
+  const cart = useSelector((state) => state.cartReducer.cart);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -25,8 +25,12 @@ const DetailPage = ({ navigation, route }) => {
   }, []);
 
   const onBuying = () => {
-    alert("Added to cart");
-    dispatch(addFilm({ [id]: film }));
+    if (id in cart) {
+      alert("Already in the cart");
+    } else {
+      alert("Added to cart");
+      dispatch(addFilm({ [id]: film }));
+    }
   };
 
   return (
