@@ -1,13 +1,13 @@
 # online-movie-store
 
-## Installation
-# Node + npm
+# Installation
+## Node + npm
 https://nodejs.org/en/download/
 
-# Expo
+## Expo
 npm install --global expo-cli
 
-# Dependencies
+## Dependencies
 npm install OR yarn add
 
 # How to run:
