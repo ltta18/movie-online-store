@@ -2,4 +2,6 @@ export default {
   ADD_FILM: "ADD_FILM",
 
   REMOVE_FILM: "REMOVE_FILM",
+
+  REMOVE_ALL_FILM: "REMOVE_ALL_FILM",
 };

@@ -7,15 +7,20 @@ import {
   TouchableOpacity,
 } from "react-native-gesture-handler";
 import { Feather } from "@expo/vector-icons";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import globalStyles from "../globalStyles";
 import PriceItem from "../components/common/PriceItem";
+import { removeAllFilm } from "../redux/actions/cart";
 
 const CartPage = ({ navigation }) => {
   // Component for Cart Page
-
+  const dispatch = useDispatch();
   const [modalVisible, setModalVisible] = useState(false);
   const { cart, totalMoney } = useSelector((state) => state.cartReducer);
+  const onFinish = () => {
+    navigation.navigate("Finish");
+    dispatch(removeAllFilm());
+  };
 
   return (
     <SafeAreaView
@@ -75,7 +80,7 @@ const CartPage = ({ navigation }) => {
         {/* checkout button */}
         <TouchableOpacity
           style={[styles.button, globalStyles.dpCt]}
-          onPress={() => navigation.navigate("Finish")}
+          onPress={onFinish}
         >
           <Text style={styles.buttonText}>CHECK OUT</Text>
         </TouchableOpacity>

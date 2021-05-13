@@ -15,6 +15,8 @@ export default function cart(state = initialState, action) {
     case CartTypes.REMOVE_FILM:
       delete cart[action.payload.id];
       return { cart, totalMoney: state.totalMoney - 15 };
+    case CartTypes.REMOVE_ALL_FILM:
+      return initialState;
     default:
       return state;
   }
